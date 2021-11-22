@@ -6,11 +6,11 @@ public class Document {
     protected String id;
     protected String name;
     protected String publisher;
-    protected double price;
+    protected int price;
 
     public  Document(){
     }
-    public Document(String id, String name, String publisher, double price) {
+    public Document(String id, String name, String publisher, int price) {
         this.id = id;
         this.name = name;
         this.publisher = publisher;
@@ -41,11 +41,11 @@ public class Document {
         this.publisher = publisher;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
     public void Input(){
@@ -57,9 +57,9 @@ public class Document {
         System.out.print("Enter publisher : ");
         publisher = sc.nextLine();
         System.out.print("Enter price : ");
-        price = sc.nextDouble();
+        price = sc.nextInt();
     }
     public void Output(){
-        System.out.printf("%20s %20s %20s %20lf",id,name,publisher,price);
+        System.out.printf("%20s %20s %20s %20d",id,name,publisher,price);
     }
 }
