@@ -14,7 +14,7 @@ public class RunMain {
         System.out.println("4. Sort books by name (ascending)");
         System.out.println("5. Sort books by price (descending)");
         System.out.println("6. Show all books");
-        System.out.println("&. Exit");
+        System.out.println("7. Exit");
         Scanner sc = new Scanner(System.in);
         int n;
         n = sc.nextInt();
@@ -32,61 +32,68 @@ public class RunMain {
             book.Input();
             books.add(book);
         }
-        System.out.printf("%20s %20s %20s %20s %20s %20s","id","name","publisher","price","Number of page","author");
+        System.out.println("Thong tin cac sach da nhap : ");
+        System.out.printf("%20s %20s %20s %20s %20s %20s\n","id","name","publisher","price","Number of page","author");
         for (int i=0;i<n;i++){
-            System.out.println("Thong tin cac sach da nhap : ");
             books.get(i).Output();
         }
         System.out.println();
-        int choose = Menu();
-        if(choose == 7){
-            return;
-        }
-        while (choose>=1&&choose<=7){
-            switch (choose){
-                case 1:
-                    System.out.println("Nhap thong tin sach muon them : ");
-                    Book a = new Book();
-                    a.Input();
-                    books.add(a);
-                    break;
-                case 3:
-                    System.out.println("Nhap id sach muon xoa : ");
-                    String s;
-                    s = sc.nextLine();
-                    for (int i=0;i<n;i++){
-                        if(books.get(i).id.equalsIgnoreCase(s)==true){
-                            books.remove(books.get(i));
-                            break;
-                        }
-                    }
-                    break;
-                case 4:
-                    for (int i=0;i<n-1;i++){
-                        for (int j=i+1;j<n;j++){
-                            if(books.get(i).name.compareToIgnoreCase(books.get(j).name)>0){
-                                Collections.swap(books,i,j);
+        int choose;
+        do {
+            choose = Menu();
+            if(choose == 7){
+                return;
+            }
+            else {
+                switch (choose){
+                    case 1:
+                        n+=1;
+                        System.out.println("Nhap thong tin sach muon them : ");
+                        Book a = new Book();
+                        a.Input();
+                        books.add(a);
+                        break;
+                    case 3:
+                        System.out.println("Nhap id sach muon xoa : ");
+                        String s;
+                        s = sc.nextLine();
+                        for (int i=0;i<n;i++){
+                            if(books.get(i).id.equalsIgnoreCase(s)==true){
+                                books.remove(books.get(i));
+                                break;
                             }
                         }
-                    }
-                    break;
-                case 5:
-                    for (int i=0;i<n-1;i++){
-                        for (int j=i+1;j<n;j++){
-                            if(books.get(i).price < books.get(j).price){
-                                Collections.swap(books,i,j);
+                        break;
+                    case 4:
+                        for (int i=0;i<n-1;i++){
+                            for (int j=i+1;j<n;j++){
+                                if(books.get(i).name.compareToIgnoreCase(books.get(j).name)>0){
+                                    Collections.swap(books,i,j);
+                                }
                             }
                         }
-                    }
-                    break;
-                case 6:
-                    for (int i=0;i<n;i++){
+                        break;
+                    case 5:
+                        for (int i=0;i<n-1;i++){
+                            for (int j=i+1;j<n;j++){
+                                if(books.get(i).price < books.get(j).price){
+                                    Collections.swap(books,i,j);
+                                }
+                            }
+                        }
+                        break;
+                    case 6:
                         System.out.println("Thong tin cac sach trong thu vien : ");
-                        books.get(i).Output();
-                    }
-                case 7:
-                    return;
+                        System.out.printf("%20s %20s %20s %20s %20s %20s\n","id","name","publisher","price","Number of page","author");
+                        for (int i=0;i<n;i++){
+                            books.get(i).Output();
+                        }
+                    case 7:
+                        return;
+                }
             }
         }
+        while (choose>=1&&choose<=7);
+
     }
 }
